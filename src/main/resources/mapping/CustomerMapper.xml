@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CustomerMapper" >
+    <update id="updateCustomer" parameterType="com.example.demo.entity.Customer" >
+    update customer set password=#{password},alias=#{alias},portrait=#{portrait},sex=#{sex} where id=#{id}
+ </update>
+    <select id="getByAccount" resultMap="userResultMap" parameterType="String" >
+    select * from customer where account=#{account}
+  </select>
+
+
+    <resultMap type="com.example.demo.entity.Customer" id="userResultMap">
+        <id column="id" property="id"/>
+        <result column="account" property="account"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+</mapper>

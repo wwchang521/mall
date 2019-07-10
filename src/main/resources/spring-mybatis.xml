@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+    <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+
+    <aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+    <bean id="dataSource"
+          class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName"
+                  value="com.mysql.cj.jdbc.Driver">
+        </property>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/mall?serverTimezone=GMT">
+        </property>
+        <property name="username" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>
+
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.example.demo.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+    </bean>
+
+    <!--
+    <context:component-scan base-package="sample.aop" />
+-->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactoryBean"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:/mapping/*.xml"/>
+    </bean>
+
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true" />
+            <tx:method name="select*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="submit*"/>
+            <tx:method name="clear*"/>
+            <tx:method name="create*"/>
+            <tx:method name="activate*"/>
+            <tx:method name="save*"/>
+            <tx:method name="insert*"/>
+            <tx:method name="add*"/>
+            <tx:method name="update*"/>
+            <tx:method name="delete*"/>
+            <tx:method name="remove*"/>
+            <tx:method name="execute*"/>
+            <tx:method name="del*"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+
+
+    <!--
+     <aop:aspectj-autoproxy />
+
+     <bean id="logAspect" class="sample.aop.aspect.LoggingAspect" />
+     <aop:config>
+
+         <aop:aspect id="LogAspect" ref="logAspect">
+
+             <aop:pointcut id="log" expression="execution(* sample.aop.service.*.*(..))"/>
+            <aop:before pointcut-ref="log" method="before"/>
+            <aop:after pointcut-ref="log" method="after"/>
+         </aop:aspect>
+     </aop:config>
+     -->
+</beans>
+
+
