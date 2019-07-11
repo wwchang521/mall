@@ -5,14 +5,17 @@
     update customer set password=#{password},alias=#{alias},portrait=#{portrait},sex=#{sex} where id=#{id}
  </update>
     <select id="getByAccount" resultMap="userResultMap" parameterType="String" >
-    select * from customer where account=#{account}
+    select id,account,password from customer where account=#{account}
   </select>
-
 
     <resultMap type="com.example.demo.entity.Customer" id="userResultMap">
         <id column="id" property="id"/>
         <result column="account" property="account"/>
         <result column="password" property="password"/>
     </resultMap>
+
+    <select id="getInfoById" parameterType="BigInteger" resultType="com.example.demo.entity.Customer">
+        select id,account,sex,portrait,alias from customer where id=#{id}
+    </select>
 
 </mapper>

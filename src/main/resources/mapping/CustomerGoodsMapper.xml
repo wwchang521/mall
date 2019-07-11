@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CustomerGoodsMapper" >
+
+
+    <insert id="addToCart" parameterType="com.example.demo.dto.CustomerGoodsDTO" >
+        insert into customer_goods(customer_id, goods_id, number) VALUES (#{customerId},#{goodsId},#{number});
+    </insert>
+
+    <update id="updateGoodsNumber" parameterType="com.example.demo.dto.CustomerGoodsDTO" >
+    update customer_goods set number=#{number} where customer_id=#{customerId} and goods_id=#{goodsId}
+ </update>
+
+    <delete id="deleteGoods" parameterType="com.example.demo.dto.CustomerGoodsDTO">
+        delete from customer_goods where customer_id=#{customerId} and goods_id=#{goodsId}
+    </delete>
+    <select id="getByCustomerId" parameterType="BigInteger" resultMap="customerGoodsMap">
+      select number,goods_id from customer_goods where customer_id=#{customerId}
+    </select>
+
+    <resultMap type="com.example.demo.dto.CustomerGoodsDTO" id="customerGoodsMap">
+        <id column="id" property="id"/>
+        <result column="goods_id" property="goodsId"/>
+    </resultMap>
+</mapper>
