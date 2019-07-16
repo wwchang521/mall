@@ -1,7 +1,9 @@
 package com.example.demo.dto;
 
 import java.math.BigInteger;
-
+/**
+ * @author zyy
+ */
 public class CustomerGoodsDTO {
     BigInteger customerId;
     BigInteger goodsId;
@@ -10,6 +12,10 @@ public class CustomerGoodsDTO {
         this.customerId = customerId;
         this.goodsId = goodsId;
         this.number = number;
+    }
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public CustomerGoodsDTO() {

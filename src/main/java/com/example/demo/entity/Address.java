@@ -2,6 +2,9 @@ package com.example.demo.entity;
 
 import java.math.BigInteger;
 
+/**
+ * @author zyy
+ */
 public class Address {
     BigInteger id;
     BigInteger customerId;

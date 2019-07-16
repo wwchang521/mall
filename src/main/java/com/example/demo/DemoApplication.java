@@ -8,12 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * @author zyy
+ */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ImportResource(value = {"classpath*:spring-mybatis.xml"})
-
-/*@ComponentScan(basePackages = {"com.example.demo"})*/
-/*@MapperScan("com.example.demo.dao")*/
 public class DemoApplication {
 
     public static void main(String[] args) {

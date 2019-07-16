@@ -6,7 +6,27 @@
     select id,name,introduce,price,picture,store,sale from goods where id=#{id}
   </select>
 
+   <select id="getAllGoods" resultType="com.example.demo.entity.Goods" >
+       select id,name,introduce,price,picture,store,sale from goods
+   </select>
 
 
+
+    <insert id="addGoods" parameterType="com.example.demo.entity.Goods" >
+        insert into goods ( name, introduce, price, picture, store, sale) values
+        (#{name},#{introduce},#{price},#{picture},#{store},#{sale});
+    </insert>
+
+    <select id="vagueSearch" resultType="com.example.demo.entity.Goods" parameterType="String" >
+    select id,name,introduce,price,picture,store,sale from goods where  name like "%"#{searchContent}"%" or introduce like "%"#{searchContent}"%"
+  </select>
+
+    <update id="updateGoods" parameterType="com.example.demo.entity.Goods" >
+    update goods set introduce=#{introduce},name=#{name},price=#{price},picture=#{picture},store=#{store} where id=#{id}
+ </update>
+
+    <delete id="deleteGoodsById" parameterType="BigInteger">
+        delete from goods where id=#{id}
+    </delete>
 
 </mapper>

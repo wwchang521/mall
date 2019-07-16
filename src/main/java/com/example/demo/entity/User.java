@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 import java.math.BigInteger;
-
+/**
+ * @author zyy
+ */
 public class User {
     private BigInteger id;
     private  String account;

@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * @author zyy
+ */
 @Service
 @Component
 @ComponentScan({"com.example.demo.service"})
@@ -18,10 +20,6 @@ public class UserDetailsService {
     @Autowired
     private UserService userService;
 
-   /* @Value("${program.mp.webId}")
-    private String webId;
-
-    @Value("${program.mp.secret-key}")*/
     private String secret;
     private static final String KEY_OPEN_ID = "openId";
     private static final String KEY_ERR_CODE = "errCode";

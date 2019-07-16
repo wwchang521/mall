@@ -1,7 +1,9 @@
 package com.example.demo.vo;
 
 import java.math.BigInteger;
-
+/**
+ * @author zyy
+ */
 public class LoginSuccessVO {
     private BigInteger id;
 
@@ -10,6 +12,11 @@ public class LoginSuccessVO {
     }
 
     public LoginSuccessVO() {
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public void setId(BigInteger id) {

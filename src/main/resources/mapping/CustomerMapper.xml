@@ -18,4 +18,13 @@
         select id,account,sex,portrait,alias from customer where id=#{id}
     </select>
 
+    <insert id="addCustomer" parameterType="com.example.demo.entity.Customer" >
+        insert into customer (account, password, portrait, sex, alias) values
+        (#{account},#{password},#{portrait},#{sex},#{alias});
+    </insert>
+
+    <select id="getAllCustomer"  resultType="com.example.demo.entity.Customer">
+        select id,account,sex,portrait,alias from customer
+    </select>
+
 </mapper>

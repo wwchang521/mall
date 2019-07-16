@@ -5,7 +5,9 @@ import com.example.demo.entity.User;
 
 import java.math.BigInteger;
 
-
+/**
+ * @author zyy
+ */
 public class JwtPayload {
     private BigInteger id;
     private String account;

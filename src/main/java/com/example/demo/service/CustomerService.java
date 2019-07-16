@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
-
+/**
+ * @author zyy
+ */
 @Service
 public class CustomerService {
     @Autowired
@@ -38,4 +40,8 @@ public class CustomerService {
     public void deleteAddress(BigInteger id){
         customerAddressMapper.deleteById(id);
     }
+
+    public void addCustomer(Customer customer){customerMapper.addCustomer(customer);}
+
+    public List<Customer>getAllCustomer(){return  customerMapper.getAllCustomer();}
 }

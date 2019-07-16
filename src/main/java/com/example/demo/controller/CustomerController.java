@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author zyy
+ */
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -24,14 +26,26 @@ public class CustomerController {
     }
 
     @PutMapping(value = "/updateInfo")
-    public void updateCustomer(@RequestBody Map<String, Object> map) throws IOException {
+    public void updateCustomer(@RequestBody Map<String, Object> map,@RequestAttribute("user") User user) throws IOException {
         Customer customer=new Customer();
-        customer.setId(new BigInteger("1"));
+        customer.setId(user.getId());
         customer.setAlias(map.get("alias").toString());
         customer.setPassword(map.get("password").toString());
         customer.setPortrait(Integer.parseInt(map.get("portrait").toString()));
         customer.setSex(Integer.parseInt(map.get("sex").toString()));
         customerService.updateCustomer(customer);
+    }
+
+
+    @PostMapping(value = "/register")
+    public void register(@RequestBody Map<String,Object>map){
+        Customer customer=new Customer();
+        customer.setAccount(map.get("account").toString());
+        customer.setAlias(map.get("alias").toString());
+        customer.setPassword(map.get("password").toString());
+        customer.setPortrait(Integer.parseInt(map.get("portrait").toString()));
+        customer.setSex(Integer.parseInt(map.get("sex").toString()));
+        customerService.addCustomer(customer);
     }
 
     @GetMapping(value = "/getAddress")

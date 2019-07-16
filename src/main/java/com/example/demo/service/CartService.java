@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author zyy
+ */
 @Service
 public class CartService {
     @Autowired
@@ -31,9 +33,9 @@ public class CartService {
     }
 
     public List<CartGoodsVO> getAllGoods(User user) throws ClassNotFoundException {
-        List<CustomerGoodsDTO> customerGoodsDTOList=customerGoodsMapper.getByCustomerId(user.getId());
-        List<CartGoodsVO>cartGoodsVOList=new ArrayList<>();
-        for (CustomerGoodsDTO customerGoodsDTO:customerGoodsDTOList){
+        List<CustomerGoodsDTO> customerGoodsList =customerGoodsMapper.getByCustomerId(user.getId());
+        List<CartGoodsVO> cartGoodsList =new ArrayList<>();
+        for (CustomerGoodsDTO customerGoodsDTO:customerGoodsList ){
             Goods goods=goodsMapper.getGoodsById(customerGoodsDTO.getGoodsId());
             if(goods==null){
                 throw new ClassNotFoundException("goods not found!");
@@ -44,8 +46,8 @@ public class CartService {
             cartGoodsVO.setPicture(goods.getPicture());
             cartGoodsVO.setPrice(goods.getPrice());
             cartGoodsVO.setGoodsId(goods.getId());
-            cartGoodsVOList.add(cartGoodsVO);
+             cartGoodsList .add(cartGoodsVO);
         }
-        return cartGoodsVOList;
+        return  cartGoodsList ;
     }
 }
