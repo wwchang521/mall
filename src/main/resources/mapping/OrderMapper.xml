@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.OrderMapper" >
+
+    <select id="getOrderById" resultType="com.example.demo.entity.Order" parameterType="BigInteger" >
+    select id,state,customer_address_id,customer_id,order_time,receiving_time from order where id=#{id}
+     </select>
+
+    <select id="getAllOrder" resultType="com.example.demo.entity.Order" >
+       select id,state,customer_address_id,customer_id,order_time,receiving_time from order
+   </select>
+
+
+
+    <resultMap type="com.example.demo.entity.Order" id="orderMapper">
+        <id column="id" property="id"/>
+        <result column="customer_address_id" property="customerAddressId"/>
+        <result column="customer_id" property="customerId"/>
+        <result column="order_time" property="orderTime"/>
+        <result column="receiving_time" property="receivingTime"/>
+    </resultMap>
+</mapper>

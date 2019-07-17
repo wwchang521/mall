@@ -74,7 +74,8 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter  {
                 username = map.get(account).toString();
                 password = map.get(passWord).toString();
             } else if (map.get(code) != null) {
-                username = "code " + map.get("code");
+                username = "cod" +
+                        "e " + map.get("code");
             }
         } catch (Exception e) {
 
