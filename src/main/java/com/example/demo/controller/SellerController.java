@@ -2,14 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Customer;
 import com.example.demo.entity.Goods;
-import com.example.demo.entity.Seller;
+import com.example.demo.entity.Order;
 import com.example.demo.entity.User;
-import com.example.demo.service.CustomerService;
-import com.example.demo.service.GoodsManaService;
-import com.example.demo.service.GoodsService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.*;
+import com.example.demo.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -28,6 +27,8 @@ public class SellerController {
     GoodsManaService goodsManaService;
     @Autowired
     GoodsService goodsService;
+    @Autowired
+    OrderManaService orderManaService;
 
     @PutMapping(value = "/updatePassword")
     public void updatePassword(@RequestBody Map<String, Object> map, @RequestAttribute("user")User user) throws Exception {
@@ -42,10 +43,6 @@ public class SellerController {
     }
 
 
-    @GetMapping(value = "/allGoods")
-    public List<Goods> getAllGoods(){
-        return goodsService.getAllGoods();
-    }
 
 
     @DeleteMapping(value = "/deletegoods")
@@ -81,6 +78,11 @@ public class SellerController {
         goodsManaService.addGoods(goods);;
     }
 
+    @PostMapping(value = "/uploadPicture")
+    public String uploadPicture(@RequestParam("file") MultipartFile uploadFile,@RequestParam("name")String name){
+        return goodsManaService.uploadFile(uploadFile,name);
+    }
+
 
     @GetMapping(value = "/search")
     public List<Goods> searchGoods(@RequestBody Map<String, Object> map){
@@ -88,6 +90,20 @@ public class SellerController {
         return goodsManaService.vagueSearch(searchContent);
     }
 
+
+    @GetMapping(value = "/getAllOrder")
+    public List<OrderVO> getAllOrder(){return orderManaService.getAllOrder();}
+
+    @PutMapping(value = "/confirmDeliver")
+    public void confirmOrder(@RequestBody Map<String, Object> map){
+        BigInteger id=new BigInteger(map.get("orderId").toString());
+        orderManaService.confirmDeliver(id);
+    }
+
+    @GetMapping(value = "/inCompleteOrder")
+    public List<OrderVO>getAllNotDeliverOrder(){
+        return orderManaService.getAllNotDeliverOrder();
+    }
 
 
 }

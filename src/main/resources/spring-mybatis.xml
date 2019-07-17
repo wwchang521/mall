@@ -18,10 +18,10 @@
                   value="com.mysql.cj.jdbc.Driver">
         </property>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/mall?serverTimezone=GMT">
+                  value="jdbc:mysql://129.211.39.152:3306/mall?serverTimezone=GMT&amp;haracterEncoding=utf-8">
         </property>
         <property name="username" value="root"></property>
-        <property name="password" value="123456"></property>
+        <property name="password" value="ZYYwc_831143"></property>
     </bean>
 
 

@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -8,34 +9,11 @@ import java.util.Date;
  * @date 2019-07-12 14:21
  */
 public class Order {
+    public Order() {
+    }
+
     BigInteger id;
     Integer state;
-    BigInteger customerAddressId;
-    BigInteger customerId;
-    Date orderTime;//下单时间
-    Date receivingTime;//收货时间
-
-
-    public Order(BigInteger id, Integer state, BigInteger customerAddressId, BigInteger customerId) {
-        this.id = id;
-        this.state = state;
-        this.customerAddressId = customerAddressId;
-        this.customerId = customerId;
-    }
-
-    public Order() {
-
-    }
-
-    public Order(BigInteger id, Integer state, BigInteger customerAddressId, BigInteger customerId, Date orderTime, Date receivingTime) {
-        this.id = id;
-        this.state = state;
-        this.customerAddressId = customerAddressId;
-        this.customerId = customerId;
-        this.orderTime = orderTime;
-        this.receivingTime = receivingTime;
-    }
-
 
     public BigInteger getId() {
         return id;
@@ -69,19 +47,36 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public Date getOrderTime() {
+    public String getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Date orderTime) {
+    public void setOrderTime(String orderTime) {
         this.orderTime = orderTime;
     }
 
-    public Date getReceivingTime() {
+    public String getReceivingTime() {
         return receivingTime;
     }
 
-    public void setReceivingTime(Date receivingTime) {
+    public void setReceivingTime(String receivingTime) {
         this.receivingTime = receivingTime;
     }
+
+    public Order(BigInteger id, Integer state, BigInteger customerAddressId, BigInteger customerId, String orderTime, String receivingTime) {
+        this.id = id;
+
+        this.state = state;
+        this.customerAddressId = customerAddressId;
+        this.customerId = customerId;
+        this.orderTime = orderTime;
+        this.receivingTime = receivingTime;
+    }
+
+    BigInteger customerAddressId;
+    BigInteger customerId;
+    String orderTime;
+    String receivingTime;
+
+
 }

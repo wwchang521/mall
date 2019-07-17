@@ -14,16 +14,16 @@ import java.util.List;
  * @author zyy
  */
 @RestController
-@RequestMapping("/goods")
+@RequestMapping("")
 public class GoodsController {
     @Autowired
     GoodsService goodsService;
-    @GetMapping(value = "/browse")
+    @GetMapping(value = "/getAllGoods")
     public List<Goods> getAllGoods(){
         return goodsService.getAllGoods();
     }
 
-    @GetMapping(value = "/details/{goodsId}")
+    @GetMapping(value = "/goods/details/{goodsId}")
     public Goods geGoodsById(@PathVariable("goodsId") BigInteger goodsId){
         return goodsService.getGoodsById(goodsId);
     }

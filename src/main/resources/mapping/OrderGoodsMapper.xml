@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.OrderGoodsMapper" >
+    <insert id="createOrderGoods" parameterType="com.example.demo.dto.OrderGoodsDTO">
+        insert into order_goods (goods_id, order_id, goods_num) values (#{goodsId},#{orderId},#{goodsNum})
+    </insert>
+    <select id="getByOrderId" parameterType="BigInteger" resultMap="orderGoodsMapper">
+        select goods_id,order_id,goods_num from  order_goods where  order_id=#{orderId}
+    </select>
+
+    <resultMap type="com.example.demo.dto.OrderGoodsDTO" id="orderGoodsMapper">
+        <result column="goods_id" property="goodsId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="goods_num" property="goodsNum"/>
+    </resultMap>
+</mapper>

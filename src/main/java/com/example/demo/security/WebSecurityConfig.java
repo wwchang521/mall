@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author XIE
  * @date 2018/12/18
  */
+
 @Configuration
 @ComponentScan({"com.example.demo.security.auth"})
 @Component

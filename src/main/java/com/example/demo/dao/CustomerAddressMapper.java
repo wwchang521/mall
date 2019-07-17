@@ -34,4 +34,13 @@ public interface CustomerAddressMapper {
      * @param id id
      */
     void deleteById(BigInteger id);
+
+    /**
+     * 根据id获取地址信息
+     * @param id id
+     * @return
+     */
+   Address getAddressById(BigInteger id);
+
+
 }
