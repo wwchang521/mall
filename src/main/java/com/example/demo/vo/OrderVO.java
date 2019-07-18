@@ -9,6 +9,7 @@ import java.util.List;
 public class OrderVO {
     BigInteger id;
     BigInteger customerId;
+    String customerName;
     String orderTime;
     String address;
     String receivingTime;
@@ -78,17 +79,6 @@ public class OrderVO {
         return receivingTime;
     }
 
-    public OrderVO(BigInteger id, BigInteger customerId, String orderTime, String address, String receivingTime, String receiver, String phone, Integer state, List<OrderGoodsVO> goodsList) {
-        this.id = id;
-        this.customerId = customerId;
-        this.orderTime = orderTime;
-        this.address = address;
-        this.receivingTime = receivingTime;
-        this.receiver = receiver;
-        this.phone = phone;
-        this.state = state;
-        this.goodsList = goodsList;
-    }
 
     public void setReceivingTime(String receivingTime) {
         this.receivingTime = receivingTime;
@@ -104,7 +94,26 @@ public class OrderVO {
 
     String phone;
 
+    public OrderVO(BigInteger id, BigInteger customerId, String customerName, String orderTime, String address, String receivingTime, String receiver, String phone, Integer state, List<OrderGoodsVO> goodsList) {
+        this.id = id;
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.orderTime = orderTime;
+        this.address = address;
+        this.receivingTime = receivingTime;
+        this.receiver = receiver;
+        this.phone = phone;
+        this.state = state;
+        this.goodsList = goodsList;
+    }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
     Integer state;
     List<OrderGoodsVO>goodsList;

@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dao.CustomerGoodsMapper;
 import com.example.demo.dao.GoodsMapper;
+import com.example.demo.dto.CartGoodsDTO;
 import com.example.demo.dto.CustomerGoodsDTO;
 import com.example.demo.entity.Goods;
 import com.example.demo.entity.User;
@@ -9,6 +10,7 @@ import com.example.demo.vo.CartGoodsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -21,11 +23,30 @@ public class CartService {
     @Autowired
     GoodsMapper goodsMapper;
     public void addToCart(CustomerGoodsDTO customerGoodsDTO){
-        customerGoodsMapper.addToCart(customerGoodsDTO);
+        CustomerGoodsDTO newCustomerGoods=customerGoodsMapper.getByCustomerIdAndGoodsId(customerGoodsDTO);
+        if(newCustomerGoods==null) {
+            customerGoodsMapper.addToCart(customerGoodsDTO);
+        }
+        else {
+            Integer number=newCustomerGoods.getNumber();
+            newCustomerGoods.setNumber(number+customerGoodsDTO.getNumber());
+            customerGoodsMapper.updateGoodsNumber(newCustomerGoods);
+        }
     }
 
-    public void updateGoodsNumber(CustomerGoodsDTO customerGoodsDTO){
+    /*public void updateGoodsNumber(CustomerGoodsDTO customerGoodsDTO){
         customerGoodsMapper.updateGoodsNumber(customerGoodsDTO);
+    }*/
+
+    public void updateCart(ArrayList<CartGoodsDTO>goodsList,User user){
+        BigInteger customerId=user.getId();
+        for(CartGoodsDTO goods:goodsList){
+            CustomerGoodsDTO customerGoods=new CustomerGoodsDTO();
+            customerGoods.setCustomerId(customerId);
+            customerGoods.setNumber(goods.getNumber());
+            customerGoods.setGoodsId(goods.getGoodsId());
+            customerGoodsMapper.updateGoodsNumber(customerGoods);
+        }
     }
 
     public void deleteGoods(CustomerGoodsDTO customerGoodsDTO){

@@ -18,8 +18,13 @@
       select number,goods_id from customer_goods where customer_id=#{customerId}
     </select>
 
+    <select id="getByCustomerIdAndGoodsId" parameterType="com.example.demo.dto.CustomerGoodsDTO" resultMap="customerGoodsMap">
+         select customer_id,number,goods_id from customer_goods where customer_id=#{customerId} and goods_id=#{goodsId}
+    </select>
+
     <resultMap type="com.example.demo.dto.CustomerGoodsDTO" id="customerGoodsMap">
         <id column="id" property="id"/>
         <result column="goods_id" property="goodsId"/>
+        <result column="customer_id" property="customerId"/>
     </resultMap>
 </mapper>

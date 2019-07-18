@@ -34,4 +34,11 @@ public interface CustomerGoodsMapper {
      * @return
      */
     List<CustomerGoodsDTO>getByCustomerId(BigInteger id);
+
+    /**
+     * 根据客户id和商品id获取购物车中的商品
+     * @param
+     * @return
+     */
+    CustomerGoodsDTO getByCustomerIdAndGoodsId(CustomerGoodsDTO customerGoodsDTO);
 }

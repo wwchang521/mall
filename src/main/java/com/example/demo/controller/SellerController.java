@@ -99,8 +99,8 @@ public class SellerController {
     }
 
     @GetMapping(value = "/inCompleteOrder")
-    public List<OrderVO>getAllNotDeliverOrder(){
-        return orderManaService.getAllNotDeliverOrder();
+    public List<OrderVO>getAllInCompleteOrder(){
+        return orderManaService.getAllInCompleteOrder();
     }
 
     @GetMapping(value = "/finishOrder")

@@ -1,11 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.CustomerAddressMapper;
-import com.example.demo.dao.GoodsMapper;
-import com.example.demo.dao.OrderGoodsMapper;
-import com.example.demo.dao.OrderMapper;
+import com.example.demo.dao.*;
 import com.example.demo.dto.OrderGoodsDTO;
 import com.example.demo.entity.Address;
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.Goods;
 import com.example.demo.entity.Order;
 import com.example.demo.vo.OrderGoodsVO;
@@ -30,6 +28,8 @@ public class OrderManaService {
     OrderGoodsMapper orderGoodsMapper;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    CustomerMapper customerMapper;
 
 
     public void confirmDeliver(BigInteger id){
@@ -52,9 +52,11 @@ public class OrderManaService {
 
 
 
-    public  List<OrderVO>getAllNotDeliverOrder(){
+    public  List<OrderVO>getAllInCompleteOrder(){
         Integer state=3;
+        Integer state2=4;
         List<Order>orderList=orderMapper.getAllOrderByState(state);
+        orderList.addAll(orderMapper.getAllOrderByState(state2));
         return  getOrderVo(orderList);
     }
 
@@ -66,6 +68,8 @@ public class OrderManaService {
             OrderVO orderVO=new OrderVO();
             orderVO.setId(orderList.get(i).getId());
             orderVO.setCustomerId(orderList.get(i).getCustomerId());
+            Customer customer=customerMapper.getInfoById(orderList.get(i).getCustomerId());
+            orderVO.setCustomerName(customer.getAlias());
             orderVO.setState(orderList.get(i).getState());
             orderVO.setOrderTime(orderList.get(i).getOrderTime());
             orderVO.setReceivingTime(orderList.get(i).getReceivingTime());

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.dto.CartGoodsDTO;
 import com.example.demo.dto.CustomerGoodsDTO;
 import com.example.demo.entity.User;
 import com.example.demo.service.CartService;
@@ -26,6 +27,12 @@ public class CartController {
        return cartService.getAllGoods(user);
     }
 
+    @PostMapping(value = "/updateCart")
+    public void updateCart(@RequestAttribute("user") User user,@RequestBody Map<String, Object> map){
+        ArrayList<CartGoodsDTO>goodsList=(ArrayList<CartGoodsDTO>)map.get("goods");
+        cartService.updateCart(goodsList,user);
+    }
+
     @PostMapping(value = "/addToCart")
     public void addToCart(@RequestAttribute("user") User user,@RequestBody Map<String, Object> map){
         CustomerGoodsDTO customerGoodsDTO=new CustomerGoodsDTO();
@@ -35,24 +42,24 @@ public class CartController {
         cartService.addToCart(customerGoodsDTO);
     }
 
-    @PutMapping(value = "/updateGoodsNumber")
+   /* @PutMapping(value = "/updateGoodsNumber")
     public void updateGoodsNumber(@RequestAttribute("user") User user,@RequestBody Map<String, Object> map){
         CustomerGoodsDTO customerGoodsDTO=new CustomerGoodsDTO();
         customerGoodsDTO.setCustomerId(user.getId());
         customerGoodsDTO.setGoodsId(new BigInteger(map.get("goodsId").toString()));
         customerGoodsDTO.setNumber(Integer.parseInt(map.get("number").toString()));
         cartService.updateGoodsNumber(customerGoodsDTO);
-    }
+    }*/
 
-    @DeleteMapping(value = "/deleteGoods")
-    public void deleteGoods(@RequestAttribute("user") User user,@RequestBody Map<String, Object> map){
+    @DeleteMapping(value = "/deleteGoods/{goodsId}")
+    public void deleteGoods(@RequestAttribute("user") User user,@PathVariable("goodsId")BigInteger goodsId){
         CustomerGoodsDTO customerGoodsDTO=new CustomerGoodsDTO();
         customerGoodsDTO.setCustomerId(user.getId());
-        customerGoodsDTO.setGoodsId(new BigInteger(map.get("goodsId").toString()));
+        customerGoodsDTO.setGoodsId(goodsId);
         cartService.deleteGoods(customerGoodsDTO);
     }
 
-    @DeleteMapping(value = "/deleteMultiGoods")
+    @PutMapping(value = "/deleteMultiGoods")
     public void deleteMultiGoods(@RequestAttribute("user") User user, @RequestBody Map<String, Object> map){
         List<String>goodsIdStringList=(ArrayList<String>)map.get("goodsIdList");
         for(String id:goodsIdStringList){

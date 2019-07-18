@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Order;
 import com.example.demo.service.OrderService;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,10 +53,9 @@ public class OrderController {
         orderService.confirmOrder(id);
     }
 
-    @GetMapping(value = "/getAllOrder")
-    public List<Order> getAllOrder(@RequestBody Map<String, Object> map){
-        BigInteger customerId=new BigInteger(map.get("customerId").toString());
-        return orderService.getAllOrder(customerId);
+    @GetMapping(value = "/getAllOrder/{id}")
+    public List<Order> getAllOrder(@PathVariable("id")BigInteger id){
+        return orderService.getAllOrder(id);
     }
 
 
