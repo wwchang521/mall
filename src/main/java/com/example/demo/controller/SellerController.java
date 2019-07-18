@@ -45,9 +45,8 @@ public class SellerController {
 
 
 
-    @DeleteMapping(value = "/deletegoods")
-    public Boolean deleteGoods(@RequestBody Map<String, Object> map){
-        BigInteger goodsId=new BigInteger(map.get("Id").toString());
+    @DeleteMapping(value = "/deletegoods/{id}")
+    public Boolean deleteGoods(@PathVariable("id")BigInteger goodsId){
         goodsManaService.deleteGoodsById(goodsId);
         return true;
     }
