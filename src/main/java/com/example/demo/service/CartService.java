@@ -42,10 +42,13 @@ public class CartService {
             }
             CartGoodsVO cartGoodsVO=new CartGoodsVO();
             cartGoodsVO.setName(goods.getName());
-            cartGoodsVO.setNumber(customerGoodsDTO.getNumber());
+            cartGoodsVO.setCount(customerGoodsDTO.getNumber());
+            cartGoodsVO.setIntroduce(goods.getIntroduce());
+            cartGoodsVO.setSale(goods.getSale());
+            cartGoodsVO.setStore(goods.getStore());
             cartGoodsVO.setPicture(goods.getPicture());
             cartGoodsVO.setPrice(goods.getPrice());
-            cartGoodsVO.setGoodsId(goods.getId());
+            cartGoodsVO.setId(goods.getId());
              cartGoodsList .add(cartGoodsVO);
         }
         return  cartGoodsList ;

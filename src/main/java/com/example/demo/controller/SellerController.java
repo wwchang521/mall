@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Customer;
 import com.example.demo.entity.Goods;
-import com.example.demo.entity.Order;
 import com.example.demo.entity.User;
 import com.example.demo.service.*;
 import com.example.demo.vo.OrderVO;
@@ -102,6 +101,11 @@ public class SellerController {
     @GetMapping(value = "/inCompleteOrder")
     public List<OrderVO>getAllNotDeliverOrder(){
         return orderManaService.getAllNotDeliverOrder();
+    }
+
+    @GetMapping(value = "/finishOrder")
+    public List<OrderVO>getFinishOrder(){
+        return orderManaService.getFinishOrder();
     }
 
 

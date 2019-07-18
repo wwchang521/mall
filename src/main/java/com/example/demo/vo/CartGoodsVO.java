@@ -5,19 +5,32 @@ import java.math.BigInteger;
  * @author zyy
  */
 public class CartGoodsVO {
-    BigInteger goodsId;
+    BigInteger id;
     Double price;
     String name;
+    Integer count;
 
-    public BigInteger getGoodsId() {
-        return goodsId;
+    public BigInteger getId() {
+        return id;
     }
-    @Override
-    public String toString() {
-        return super.toString();
+
+    public CartGoodsVO() {
     }
-    public void setGoodsId(BigInteger goodsId) {
-        this.goodsId = goodsId;
+
+    public CartGoodsVO(BigInteger id, Double price, String name, Integer count, String picture, String introduce, Integer store, Integer sale) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+        this.count = count;
+        this.picture = picture;
+        this.introduce = introduce;
+        this.store = store;
+        this.sale = sale;
+    }
+
+    public void setId(BigInteger goodsId) {
+        this.id = goodsId;
+
     }
 
     public Double getPrice() {
@@ -36,23 +49,12 @@ public class CartGoodsVO {
         this.name = name;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
-    public CartGoodsVO(BigInteger goodsId, Double price, String name, Integer number, String picture) {
-        this.goodsId = goodsId;
-        this.price = price;
-        this.name = name;
-        this.number = number;
-        this.picture = picture;
-    }
-
-    public CartGoodsVO() {
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public String getPicture() {
@@ -63,7 +65,33 @@ public class CartGoodsVO {
         this.picture = picture;
     }
 
-    Integer number;
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public Integer getStore() {
+        return store;
+    }
+
+    public void setStore(Integer store) {
+        this.store = store;
+    }
+
+    public Integer getSale() {
+        return sale;
+    }
+
+    public void setSale(Integer sale) {
+        this.sale = sale;
+    }
+
     String picture;
+    String introduce;
+    Integer store;
+    Integer sale;
 
 }

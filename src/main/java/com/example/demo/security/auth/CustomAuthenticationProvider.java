@@ -2,7 +2,6 @@ package com.example.demo.security.auth;
 
 import com.example.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 /**
- * @author xzy
- * @date 2018-12-18
- * CustomAuthenticationProvider提供登录验证处理逻辑(处理认证请求)
+ * @author zyy
+ * @date 2019.7.18
+ * CustomAuthenticationProvider提供登录验证处理逻辑、身份认证处理
  */
 @Component
 @Service("customAuthenticationProvider")

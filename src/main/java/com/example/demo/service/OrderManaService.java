@@ -10,7 +10,6 @@ import com.example.demo.entity.Goods;
 import com.example.demo.entity.Order;
 import com.example.demo.vo.OrderGoodsVO;
 import com.example.demo.vo.OrderVO;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +43,15 @@ public class OrderManaService {
         return  getOrderVo(orderList);
     }
 
+    public  List<OrderVO>getFinishOrder(){
+        Integer state=5;
+        List<Order>orderList=orderMapper.getAllOrderByState(state);
+        return  getOrderVo(orderList);
+    }
+
+
+
+
     public  List<OrderVO>getAllNotDeliverOrder(){
         Integer state=3;
         List<Order>orderList=orderMapper.getAllOrderByState(state);
@@ -60,6 +68,7 @@ public class OrderManaService {
             orderVO.setCustomerId(orderList.get(i).getCustomerId());
             orderVO.setState(orderList.get(i).getState());
             orderVO.setOrderTime(orderList.get(i).getOrderTime());
+            orderVO.setReceivingTime(orderList.get(i).getReceivingTime());
             Address address = customerAddressMapper.getAddressById(orderList.get(i).getCustomerAddressId());
             orderVO.setAddress(address.getAddress());
             orderVO.setPhone(address.getPhone());

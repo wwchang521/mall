@@ -11,6 +11,7 @@ public class OrderVO {
     BigInteger customerId;
     String orderTime;
     String address;
+    String receivingTime;
 
     public OrderVO() {
     }
@@ -73,6 +74,26 @@ public class OrderVO {
         this.state = state;
     }
 
+    public String getReceivingTime() {
+        return receivingTime;
+    }
+
+    public OrderVO(BigInteger id, BigInteger customerId, String orderTime, String address, String receivingTime, String receiver, String phone, Integer state, List<OrderGoodsVO> goodsList) {
+        this.id = id;
+        this.customerId = customerId;
+        this.orderTime = orderTime;
+        this.address = address;
+        this.receivingTime = receivingTime;
+        this.receiver = receiver;
+        this.phone = phone;
+        this.state = state;
+        this.goodsList = goodsList;
+    }
+
+    public void setReceivingTime(String receivingTime) {
+        this.receivingTime = receivingTime;
+    }
+
     public List<OrderGoodsVO> getGoodsList() {
         return goodsList;
     }
@@ -83,16 +104,7 @@ public class OrderVO {
 
     String phone;
 
-    public OrderVO(BigInteger id, BigInteger customerId, String orderTime, String address, String receiver, String phone, Integer state, List<OrderGoodsVO> goodsList) {
-        this.id = id;
-        this.customerId = customerId;
-        this.orderTime = orderTime;
-        this.address = address;
-        this.receiver = receiver;
-        this.phone = phone;
-        this.state = state;
-        this.goodsList = goodsList;
-    }
+
 
     Integer state;
     List<OrderGoodsVO>goodsList;
